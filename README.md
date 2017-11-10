@@ -3,37 +3,7 @@
 <p>Tedi-request est un outil qui permet d&#39;alimenter facilement un projet en donn&eacute;es sur tedi.twistengine.com. TEDi se base sur un m&eacute;lange technologie&nbsp;Websocket et WebGL qui permet de connecter un projet 3D &agrave; des utilisateurs distants et des objets connect&eacute;s en temps r&eacute;el.</p>
 
 <p>TEDi est d&eacute;velopp&eacute; par TWISTENGINE. Plus d&#39;infos sur : <a href="http://twistengine.com">http://twistengine.com</a></p>
-#### Client side
 
-```html
-<script>
-  var socket = io.connect('http://localhost');
-
-  socket.on('connect', function () {
-    socket.emit('set nickname', prompt('What is your nickname?'));
-    socket.on('ready', function () {
-      console.log('Connected !');
-      socket.emit('msg', prompt('What is your message?'));
-    });
-  });
-</script>
-```
-```js
-var io = require('socket.io').listen(80);
-
-var chat = io
-  .of('/chat')
-  .on('connection', function (socket) {
-    socket.emit('a message', { that: 'only', '/chat': 'will get' });
-    chat.emit('a message', { everyone: 'in', '/chat': 'will get' });
-  });
-
-var news = io
-  .of('/news');
-  .on('connection', function (socket) {
-    socket.emit('item', { news: 'item' });
-  });
-```
 <h2>Documentation</h2>
 
 <p>Toute la documentation sur TEDi et l&#39;API se trouve sur le site <a href="https://tedi.twistengine.com/documentation">https://tedi.twistengine.com/documentation</a>.</p>
@@ -46,10 +16,9 @@ var news = io
 
 <p>L&#39;API n&eacute;cessite l&#39;installation pr&eacute;alable de node.js</p>
 
-<div class="highlight highlight-source-shell">
-<pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;">
-$ npm install tedi-request</pre>
-</div>
+```bash
+npm install tedi-request
+```
 
 <h2>Utilisation</h2>
 
