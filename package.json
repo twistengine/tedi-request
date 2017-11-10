@@ -1,0 +1,55 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "file:tedi-request",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "file:tedi-request",
+        "spec": "/home/ubuntu/workspace/tedi-request",
+        "type": "directory"
+      },
+      "/home/ubuntu/workspace"
+    ]
+  ],
+  "_from": "tedi-request",
+  "_id": "tedi-request@0.0.2",
+  "_inCache": true,
+  "_location": "/tedi-request",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "file:tedi-request",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "file:tedi-request",
+    "spec": "/home/ubuntu/workspace/tedi-request",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "file:tedi-request",
+  "_shasum": "f872190fa5f08dc3f18b7392c48acc5871a921e3",
+  "_shrinkwrap": null,
+  "_spec": "file:tedi-request",
+  "_where": "/home/ubuntu/workspace",
+  "author": {
+    "name": "Mathieu CAZELLE",
+    "email": "mathieu.cazelle@twistengine.com"
+  },
+  "dependencies": {},
+  "description": "Javascript app to send command to tedi.twistengine.com",
+  "devDependencies": {},
+  "license": "ISC",
+  "main": "tedi-request.js",
+  "name": "tedi-request",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.2"
+}
