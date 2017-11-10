@@ -3,7 +3,37 @@
 <p>Tedi-request est un outil qui permet d&#39;alimenter facilement un projet en donn&eacute;es sur tedi.twistengine.com. TEDi se base sur un m&eacute;lange technologie&nbsp;Websocket et WebGL qui permet de connecter un projet 3D &agrave; des utilisateurs distants et des objets connect&eacute;s en temps r&eacute;el.</p>
 
 <p>TEDi est d&eacute;velopp&eacute; par TWISTENGINE. Plus d&#39;infos sur : <a href="http://twistengine.com">http://twistengine.com</a></p>
+#### Client side
 
+```html
+<script>
+  var socket = io.connect('http://localhost');
+
+  socket.on('connect', function () {
+    socket.emit('set nickname', prompt('What is your nickname?'));
+    socket.on('ready', function () {
+      console.log('Connected !');
+      socket.emit('msg', prompt('What is your message?'));
+    });
+  });
+</script>
+```
+```js
+var io = require('socket.io').listen(80);
+
+var chat = io
+  .of('/chat')
+  .on('connection', function (socket) {
+    socket.emit('a message', { that: 'only', '/chat': 'will get' });
+    chat.emit('a message', { everyone: 'in', '/chat': 'will get' });
+  });
+
+var news = io
+  .of('/news');
+  .on('connection', function (socket) {
+    socket.emit('item', { news: 'item' });
+  });
+```
 <h2>Documentation</h2>
 
 <p>Toute la documentation sur TEDi et l&#39;API se trouve sur le site <a href="https://tedi.twistengine.com/documentation">https://tedi.twistengine.com/documentation</a>.</p>
@@ -27,40 +57,42 @@ $ npm install tedi-request</pre>
 
 <p>C&ocirc;t&eacute; serveur :</p>
 
-<pre style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;">
-<code>var tedi = require(&#39;tedi-request&#39;);
-</code>
-//
+```js
+var tedi = require('tedi-request');
+
 tedi.setCredentials({
-  email:&quot;jon.doe@mail.com&quot;,
-  secretAccessKey:&quot;XXXXXX_XXXX_XXXXXX&quot;
+  email:'jon.doe@mail.com',
+  secretAccessKey:'XXXXXX_XXXX_XXXXXX'
 });
 
-//
-var projectId = &quot;XXXXXXXXX&quot;;
+var projectId = 'XXXXXXXXX';
 tedi.setProjectId( projectId );
 
 //Exemple de commande
 var command = {
-    &quot;name&quot;: &quot;AddObjectCommand&quot;,
-    &quot;value&quot;: {
-        &quot;uuid&quot;: &quot;12345678&quot;,
-        &quot;type&quot;: &quot;Icon&quot;,
-        &quot;name&quot;: &quot;Hello world&quot;,
-        &quot;message&quot;: &quot;hello&quot;,
-        &quot;position&quot;: {
-            &quot;x&quot;: &quot;1&quot;,
-            &quot;y&quot;: &quot;1&quot;,
-            &quot;z&quot;: &quot;1&quot;
-        }
+  name: 'AddObjectCommand',
+  value: {
+    uuid: '12345678',
+    type: 'Icon',
+    name: 'Hello world',
+    message: 'hello',
+    position: {
+      x: '1',
+      y: '1',
+      z: '1'
     }
+  }
 }
 
 //Envoi de la commande
 tedi.sendCommand( command, function(error, result){       
-    if(error !== undefined) console.log(error);
-    else console.log(result);
-});</pre>
+  if(error !== undefined){
+    console.log(error);
+  } else {
+    console.log(result);
+  }
+});
+```
 
 <h3>C&ocirc;t&eacute; client :</h3>
 
